@@ -162,21 +162,21 @@ M.luasnip_fn = function(opts)
 
                 -- Use first snippet to expand
                 if (#snippetsToExpand > 0) then
-                  -- -- Choice1: add a new line and expand snippet
-                  -- vim.schedule(function() -- Use schedule to ensure execution happens after Telescope UI closes
-                  --   -- Simulate pressing 'o' to create a new line with proper auto-indentation
-                  --   local key = vim.api.nvim_replace_termcodes("o", true, false, true)
-                  --   vim.api.nvim_feedkeys(key, "n", false)
-                  --
-                  --   -- Small delay to allow Vim to process the indentation before expanding the snippet
-                  --   vim.defer_fn(function() luasnip.snip_expand(snippetsToExpand[1]) end, 50)
-                  -- end)
+                    -- -- Choice1: add a new line and expand snippet
+                    -- vim.schedule(function() -- Use schedule to ensure execution happens after Telescope UI closes
+                    --     -- Simulate pressing 'o' to create a new line with proper auto-indentation
+                    --     local key = vim.api.nvim_replace_termcodes("o", true, false, true)
+                    --     vim.api.nvim_feedkeys(key, "n", false)
+                    --
+                    --     -- Small delay to allow Vim to process the indentation before expanding the snippet
+                    --     vim.defer_fn(function() luasnip.snip_expand(snippetsToExpand[1]) end, 50)
+                    -- end)
 
-                  -- Choice2: expand snippet at end of current line
-                  vim.schedule(function() -- Use schedule to ensure execution happens after Telescope UI closes
-                    vim.cmd(':startinsert!')
-                    vim.defer_fn(function() luasnip.snip_expand(snippetsToExpand[1]) end, 50)
-                  end)
+                    -- Choice2: expand snippet at end of current line
+                    vim.schedule(function() -- Use schedule to ensure execution happens after Telescope UI closes
+                        vim.cmd(':startinsert!')
+                        vim.defer_fn(function() luasnip.snip_expand(snippetsToExpand[1]) end, 50)
+                    end)
                 else
                     error(
                         "telescope-luasnip.nvim: snippet '" .. selection.value.context.name .. "'" ..
